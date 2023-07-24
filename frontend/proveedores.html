@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sistema Ventas</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</head>
+  <body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">SISTEMA DE VENTAS</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html"><b>Inicio</b></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="comprar.html">Comprar</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="vender.html">Vender</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="factura.html">Facturas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="kardex.html">Reporte Kardex</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Contenido -->
+      <div class="container mt-4">
+        <h1 class="mb-3">PROVEEDORES</h1>
+        <a href="#" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modal-nuevo-proveedor"> Agregar Proveedor
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-envelope-plus-fill" viewBox="0 0 16 16">
+                <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 4.697v4.974A4.491 4.491 0 0 0 12.5 8a4.49 4.49 0 0 0-1.965.45l-.338-.207L16 4.697Z"/>
+                <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 0 0 1 0v-1h1a.5.5 0 0 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"/>
+            </svg>
+        </a>
+        
+        <table class="table" id="table-proveedores">
+          <thead>
+            <tr style="background-color: ghostwhite;">
+                <th>ACCIONES</th>
+                <th>ID</th>
+                <th>RUC - CEDULA</th>
+                <th>NOMBRE</th>   
+                <th>DIRECCION</th> 
+                <th>TELEFONO</th>    
+                <th>EMAIL</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+              </tr>
+          </tbody>
+        </table>
+        <!-- Modal Nuevo Proveedor -->
+        <div class="modal fade" id="modal-nuevo-proveedor" tabindex="-1" aria-labelledby="modal-nuevo-proveedor-label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-nuevo-proveedor-label">Nuevo Proveedor</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form-proveedores">
+                            <div class="mb-3">
+                                <label for="cedula-proveedor" class="form-label">RUC - Cedula</label>
+                                <!-- que solo deje ingresar numeros, y que solo deje ingresar 13 numeros -->
+                                <input type="text" class="form-control" id="cedula-proveedor" required
+                                    oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" 
+                                    maxlength="13" pattern="[0-9]+" title="Solo se permiten numeros">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nombre-proveedor" class="form-label">Nombre Proveedor</label>
+                                <input type="text" class="form-control" id="nombre-proveedor" required 
+                                    oninput="this.value = this.value.toUpperCase()">
+                            </div>           
+                            <div class="mb-3">
+                                <label for="direccion-proveedor" class="form-label">Direccion Proveedor</label>
+                                <input type="text" class="form-control" id="direccion-proveedor" required 
+                                    oninput="this.value = this.value.toUpperCase()">
+                            </div>
+                            <div class="mb-3">
+                                <label for="telefono-proveedor" class="form-label">Telefono Proveedor</label>
+                                <!-- que solo deje ingresar 10 numeros -->                      
+                                <input type="text" class="form-control" id="telefono-proveedor" required
+                                    oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" 
+                                    maxlength="10" minlength="10" pattern="[0-9]{10}">                              
+                            </div>       
+                            <div class="mb-3">
+                                <label for="email-proveedor" class="form-label">Email Proveedor</label>
+                                <!--validar que sea un correo-->
+                                <input type="email" class="form-control" id="email-proveedor" required>
+                            </div>                                                         
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" id="btn-guardar-proveedor" class="btn btn-primary">Guardar</button>
+                            </div>  
+                        </form>           
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <!-- Modal Detalle Proveedor -->
+        <div class="modal fade" id="modal-detalle-proveedor" tabindex="-1" aria-labelledby="modal-detalle-proveedor-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-detalle-proveedor-label">Detalle Proveedor</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="cedula-proveedor-detalle" class="form-label">RUC - Cedula Proveedor</label>
+                        <input type="text" class="form-control" id="cedula-proveedor-detalle" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nombre-proveedor-detalle" class="form-label">Nombre Proveedor</label>
+                        <input type="text" class="form-control" id="nombre-proveedor-detalle" disabled>
+                    </div>   
+                    <div class="mb-3">
+                        <label for="direccion-proveedor-detalle" class="form-label">Direccion Proveedor</label>
+                        <input type="text" class="form-control" id="direccion-proveedor-detalle" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefono-proveedor-detalle" class="form-label">Telefono Proveedor</label>
+                        <input type="text" class="form-control" id="telefono-proveedor-detalle" disabled>
+                    </div>       
+                    <div class="mb-3">
+                        <label for="email-proveedor-detalle" class="form-label">Email Proveedor</label>
+                        <input type="email" class="form-control" id="email-proveedor-detalle" disabled>               
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Edición Cliente -->
+        <div class="modal fade" id="modal-edicion-proveedor" tabindex="-1" aria-labelledby="modal-edicion-proveedor-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-edicion-proveedor-label">Editar Proveedor</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="form-edicion-proveedor">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="id-proveedor" class="form-label">ID  Proveedor</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cedula-proveedor" class="form-label">Cedula Proveedor</label>
+                                <input type="text" class="form-control" id="cedula-proveedor" name="cedula-proveedor" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nombre-proveedor" class="form-label">Nombre Proveedor</label>
+                                <input type="text" class="form-control" id="nombre-proveedor" name="nombre-proveedor" required
+                                    oninput="this.value = this.value.toUpperCase()">
+                            </div> 
+                            <div class="mb-3">
+                                <label for="direccion-proveedor" class="form-label">Direccion Proveedor</label>
+                                <input type="text" class="form-control" id="direccion-proveedor" name="direccion-proveedor" required
+                                    oninput="this.value = this.value.toUpperCase()">                 
+                            </div>
+                            <div class="mb-3">
+                                <label for="telefono-proveedor" class="form-label">Telefono Proveedor</label>
+                                <!-- que solo deje ingresar 10 numeros -->
+                                <input type="text" class="form-control" id="telefono-proveedor" name="telefono-proveedor" required
+                                    oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" 
+                                    maxlength="10" minlength="10" pattern="[0-9]{10}">                                 
+                            </div>   
+                            <div class="mb-3">
+                                <label for="email-proveedor" class="form-label">Email Proveedor</label>
+                                <!--validar que sea un correo-->
+                                <input type="email" class="form-control" id="email-proveedor" name="email-proveedor" required>
+                            </div>                 
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" id="btn-editar-proveedor" class="btn btn-primary">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Enlaces a los archivos de jQuery y Popper.js (requeridos por Bootstrap) -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://unpkg.com/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
+        <script src="../controllers/proveedores-controller.js"></script>
+  </body>
+  <footer class="bg-light py-3">
+    <div class="container">
+        <p class="text-center">© 2023 Sistema de Ventas</p>
+        <p class="text-center">© Desarrollado por Gustavo Gualan</p>
+    </div>
+</footer>
+</html>
