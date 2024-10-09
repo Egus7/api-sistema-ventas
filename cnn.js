@@ -11,7 +11,7 @@ app.use(bodyParse.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-    res.send("Hola mundo");
+    res.send("Hola mundo esta una API Backend de Sistema Ventas");
 });
 
 // Usar el archivo index.js de /routes para manejar todas las rutas
