@@ -9,6 +9,7 @@ const buysRoutes = require('./buys');
 const inventoryRoutes = require('./inventory');
 const salesRoutes = require('./sales');
 const commercial_invoiceRoutes = require('./commercial_invoice');
+const iva_parameterRoutes = require('./iva_parameter');
 
 const router = express.Router();
 
@@ -23,5 +24,6 @@ router.use('/compras', buysRoutes);
 router.use('/inventario', inventoryRoutes);
 router.use('/ventas', salesRoutes);
 router.use('/facturas', commercial_invoiceRoutes);
+router.use('/valor_iva', iva_parameterRoutes);
 
 module.exports = router;
